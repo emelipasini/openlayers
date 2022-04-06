@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mapas</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/ol.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <script defer type="text/javascript" src="/js/ol.js"></script>
+    <script defer type="text/javascript" src="/js/layers.js"></script>
+    <script defer type="text/javascript" src="/js/vectors.js"></script>
+    <script defer type="text/javascript" src="/js/heatmap.js"></script>
+    <script defer type="text/javascript" src="/js/clusters.js"></script>
+    <script defer type="text/javascript" src="/js/eco-regions.js"></script>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="grid-1">
+            <aside class="sidebar">
+                <div class="layer-change">
+                    <h4>Base Layers</h4>
+                    <input class="baseLayer" type="radio" name="baseLayerRadioButton" value="OSMStandard" checked>OSM Standard<br>
+                    <input class="baseLayer" type="radio" name="baseLayerRadioButton" value="StamenTerrain">Stamen Terrain<br>
+                    <input class="baseLayer" type="radio" name="baseLayerRadioButton" value="StamenToner">Stamen Toner<br>
+                    <input class="baseLayer" type="radio" name="baseLayerRadioButton" value="EcoRegions">Eco Region
+                </div>
+
+                <hr>
+
+                <div class="vector">
+                    <h4>Provinces Vector   <button type="button" id="toggle-vector">Toggle Vector</button></h4>
+                </div>
+
+                <hr>
+
+                <form class="heatmap">
+                    <h4>Heatmap</h4>
+                    <label for="radius">Radius size</label><br>
+                    <input id="radius" type="range" min="1" max="50" step="1" value="5"/><br>
+                    <label for="blur">Blur size</label><br>
+                    <input id="blur" type="range" min="1" max="50" step="1" value="15"/>
+                </form>
+
+                <hr>
+
+                <form class="clusters">
+                    <h4>Clusters   <button type="button" id="toggle-clusters">Toggle Clusters</button></h4>
+                    <div class="form-group">
+                        <label for="distance" class="col-form-label">Cluster distance</label><br>
+                        <input id="distance" class="form-control-range" type="range" min="0" max="200" step="1" value="40"/><br>
+                        <small class="form-text text-muted">
+                            The distance within which features will be clustered together.
+                        </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="min-distance" class="col-form-label">Minimum distance</label>
+                        <input id="min-distance" class="form-control-range" type="range" min="0" max="200" step="1" value="20"/><br>
+                        <small class="form-text text-muted">
+                            The minimum distance between clusters. Can't be larger than the configured distance.
+                        </small>
+                    </div>
+                </form>
+
+                <hr>
+
+                <div id="region-box">
+                    <h4>Selected regions:</h4>
+                    <p id="region-info">None</p>
+                </div>
+            </aside>
+        </div>
+
+        <div class="grid-2">
+            <div id="js-map" class="map"></div>
+        </div>
+    </div>
+
+    <div class="overlay-container">
+        <span class="overlay-text" id="feature-name"></span>
+        <span class="overlay-text" id="feature-info"></span>
+    </div>
+</body>
+</html>
